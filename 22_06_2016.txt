@@ -1,0 +1,82 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<windows.h>
+#include<string.h>
+#include<time.h>
+
+
+int main()
+{
+	FILE * f;
+	int x, buf;
+	int* y;
+	int n=0;
+
+	//char s[100];
+	//printf("\nVvedite put' i imia fila: ");
+	//fflush(stdin);
+	//gets(s);
+
+
+	//f=fopen(s, "w+");
+	f=fopen("d:\\qwer\\Rinat_Bogdan.txt", "a+");//открывает или создает тукстовый файл
+	if(f==NULL)
+	{
+		printf("\nFile not opened!!!");
+		_getch();
+		return 0;
+	}
+
+	printf("Vvedite x: ");
+	scanf("%d", &x);
+
+	while(x!=508)
+	{
+		fprintf(f, "%d ", x);
+	
+		printf("Vvedite x: ");
+		scanf("%d", &x);
+	}
+
+	fseek(f, 0, SEEK_SET);		//перемещаем курсор в начало файла
+	printf("\n----------------------------------------------------------\n");
+
+	fscanf(f, "%d", &buf);
+	while(!feof(f))		//while(  feof(f) == 0    )
+	{
+		n++;
+		//printf("buf=%d\n", buf);
+		fscanf(f, "%d", &buf);
+	}
+
+	printf("\nKolichestvo chisel v file %d\n", n);
+
+	y=(int*)malloc(n*sizeof(int));
+	if(y==0)
+	{
+		printf("\nPamiat ne videlena!!!");
+		_getch();
+		return 0;
+	}
+
+	fseek(f, 0, SEEK_SET);		//перемещаем курсор в начало файла
+
+	for(int i=0; i<n; i++)
+		fscanf(f, "%d", &y[i]);
+
+	printf("\n--------------------------------------------------------------------------\n");
+	printf("Soderjimoe dinamicheskogo massiva y:");
+	printf("\n--------------------------------------------------------------------------\n\n");
+	for(int i=0; i<n; i++)
+	{
+		printf("%d ", y[i]);
+	}
+
+	free(y);
+	fclose(f);
+	puts("\n\n\t\tThe end!!!");
+	_getch();
+	return 0;
+}

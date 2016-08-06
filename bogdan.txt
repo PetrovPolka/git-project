@@ -1,0 +1,43 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+
+int main()
+{
+	//4.	Даны действительные числа х и у, не равные друг другу.
+	//Меньшее из этих двух чисел заменить половиной их суммы,
+	//а большее — их удвоенным произведением.
+
+	double a, b, buf1, buf2;
+
+	printf("vvedite dva chisla: ");
+	scanf("%lf%lf", &a, &b);
+
+	buf1=(a+b)/2;
+	buf2=2*a*b;
+	
+	if(a<b)
+	{
+		a=buf1;
+		b=buf2;
+	}
+	else
+	{
+		if(a>b)
+		{
+			a=buf2;
+			b=buf1;
+		}
+		else
+			printf("\n\na i b odinakovie!!!");
+	}
+
+	printf("\n\na=%.2lf\nb=%.2lf\n", a, b);
+
+	printf("\n\n\t\tThe end!!!");
+	_getch();
+	return 0;
+}
